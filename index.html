@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Seashell Secrets</title>
+  </head>
+  <body>
+    <main>
+      <!-- #game-intro is initially shown on the game start screen -->
+      <div id="game-intro">
+        <img src="./images/logo.png" alt="" class="logo-img" />
+        <br />
+        <button id="start-button">Start Game</button>
+        <p>
+          Your mission is to dive and collect underwater treasures. Each
+          successful collection increases your score and levels up, speeding up
+          your diving. Remember to surface periodically to breathe and replenish
+          oxygen, or you'll lose a life.
+        </p>
+        <img src="./images/arrows.png" alt="" class="arrows-img" />
+      </div>
+
+      <div id="game-container">
+        <div id="stats">
+          <h2>Stats</h2>
+          <p>Score: <span id="score">0</span></p>
+          <p>Oxygen: <span id="oxygen">100</span></p>
+        </div>
+        <!-- #game-screen is initially hidden using CSS style display: none -->
+        <div id="game-screen">
+          <div id="over-water">
+            <div id="oxygen-bar">
+              <div class="bar">
+                <div class="bar-filling" id="oxygen-filling"></div>
+              </div>
+              <div class="bar-label">Oxygen</div>
+            </div>
+            <div id="score-bar">
+              <div class="bar">
+                <div class="bar-filling" id="score-filling"></div>
+              </div>
+              <div class="bar-label">Lvl <span id="lvl">1</span></div>
+            </div>
+          </div>
+          <div id="under-water">
+            <div id="object-statement"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #game-end is initially hidden using CSS style display: none -->
+      <div id="game-end">
+        <img src="./images/logo.png" alt="" class="logo-img" />
+        <h1>Game Over</h1>
+        <br />
+        <button id="restart-button">Restart</button>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="js/objects.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/stats.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>

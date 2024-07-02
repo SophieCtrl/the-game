@@ -1,0 +1,144 @@
+body {
+  padding: 0;
+  text-align: center;
+}
+
+#game-intro {
+  padding: 20px 0px;
+}
+
+#game-container {
+  display: flex;
+  width: 100vw;
+  padding: 20px 0px;
+  justify-content: center;
+}
+
+#game-screen {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  align-content: center;
+  padding: 5px;
+  flex-direction: row;
+  gap: 10px;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#over-water {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 20%;
+  background-color: peachpuff;
+}
+
+#under-water {
+  display: flex;
+  position: relative;
+  height: 80%;
+  background-image: url("../images/forest-bailey-underwater.jpg");
+  overflow: hidden; /* Hide overflow to clip overflowing background */
+  background-repeat: repeat-x; /* Repeat background image horizontally */
+  background-size: auto 100%; /* Maintain aspect ratio and cover full height */
+  animation: moveBackground 10s linear infinite; /* Adjust animation duration (20s) */
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 100% 0; /* Start position at right */
+  }
+  to {
+    background-position: -100% 0; /* End position at left */
+  }
+}
+
+#object-statement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute; /* Position it absolutely within the underwater container */
+  bottom: 3%;
+  right: 3%;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: transparent;
+  opacity: 1;
+  color: black;
+}
+
+#oxygen-bar,
+#score-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 280px;
+  height: 80px;
+  margin: 15px 15px 0 0;
+  gap: 5px;
+}
+
+.bar {
+  width: 90%; /* Adjust as needed */
+  height: 28px; /* Adjust as needed */
+  background-color: #ddd;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.bar-filling {
+  height: 100%;
+}
+
+#oxygen-filling {
+  width: 100%; /* Initially fills the entire width */
+  background-color: #70d4ff;
+}
+
+#score-filling {
+  width: 0%; /* Initially fills the entire width */
+  background-color: #ffbb3d;
+}
+
+.bar-label {
+  padding-top: 8px;
+  font-size: 16px; /* Adjust font size as needed */
+  color: black;
+  font-weight: bold;
+}
+
+#game-end {
+  display: none;
+}
+
+.game-intro p {
+  font-size: 18px;
+  font-family: "Verdana";
+}
+
+.logo-img {
+  width: 350px;
+}
+
+.arrows-img {
+  width: 150px;
+}
+
+body button {
+  font-size: 30px;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}

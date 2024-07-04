@@ -6,14 +6,13 @@ class Object {
     this.movementSpeed = 0.5;
     this.element = document.createElement("img");
     this.treatsAndEnemies = [
-      ["../images/objects/fish-big.gif", "I'm yours, my friend!", 20, 70],
+      ["../images/objects/fish-big.gif", "Catch me if you can!", 20, 70],
       [
-        "../images/objects/fish-dart.gif",
-        "You found me! Now, what's your wish?",
-        40,
+        "../images/objects/fish-ezgif.gif",
+        "Hello there, diving buddy!",
+        30,
         70,
       ],
-      ["../images/objects/fish-ezgif.gif", "I'm yours, my friend!", 30, 70],
       [
         "../images/objects/mermaid.gif",
         "Ugh, humans! Keep your hands to yourself!",

@@ -13,7 +13,6 @@ class Game {
     this.currentLvl = 1;
     this.oxygen = 100;
     this.gameIsOver = false;
-    this.gameIntervalId = null;
     this.gameLoopFrequency = Math.round(1000 / 60);
     this.player = new Player(this.gameScreen, 200, 400, 140, 140);
     this.finalScoreElement = document.querySelector("#score");
@@ -133,6 +132,7 @@ class Game {
 
   updateScore(points) {
     this.score += points;
+    if (this.score <= 0) this.score = 0;
     let lvlBarPercentage = this.score % 100; // Calculate the percentage for the current level
     this.scoreBar.style.width = lvlBarPercentage + "%";
     this.levelUp();

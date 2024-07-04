@@ -1,6 +1,7 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
+  const startSound = document.getElementById("startSound");
   let game = null;
 
   // Function that handles keydown event
@@ -64,7 +65,8 @@ window.onload = function () {
   }
 
   startButton.addEventListener("click", function () {
-    startGame();
+    startSound.play();
+    setTimeout(startGame, 1000);
   });
 
   function startGame() {

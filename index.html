@@ -4,30 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <title>Seashell Secrets</title>
+    <title>Dive Quest: Fish Frenzy</title>
   </head>
   <body>
     <main>
       <!-- #game-intro is initially shown on the game start screen -->
       <div id="game-intro">
-        <img src="./images/logo.png" alt="" class="logo-img" />
+        <img src="images/logo1.png" class="logo-img" alt="Dive Quest: Fish Franzy" />
         <br />
-        <button id="start-button">Start Game</button>
-        <p>
-          Your mission is to dive and collect underwater treasures. Each
-          successful collection increases your score and levels up, speeding up
-          your diving. Remember to surface periodically to breathe and replenish
-          oxygen, or you'll lose a life.
+        <div class="centered-container"><p>
+          Ahoy, young adventurer! Ready for your mission?
         </p>
-        <img src="./images/arrows.png" alt="" class="arrows-img" />
+        <ul>
+          <li>
+            <b>– Catch fish to improve your experience and
+            level up.
+          </li>
+          <li>
+            <b>– Avoid rude & dangerous creatures.
+          </li>
+          <li>
+            <b>– Watch the Current and be careful not to drift away.
+          </li>
+          <li>
+            <b>– Surface to replenish your oxygen. Running out
+            means losing a life.
+          </li>
+        </ul>
+        <button id="start-button">Let's Dive In!</button>
+      </div>
       </div>
 
       <div id="game-container">
-        <div id="stats">
-          <h2>Stats</h2>
-          <p>Score: <span id="score">0</span></p>
-          <p>Oxygen: <span id="oxygen">100</span></p>
-        </div>
         <!-- #game-screen is initially hidden using CSS style display: none -->
         <div id="game-screen">
           <div id="over-water">
@@ -52,9 +60,14 @@
 
       <!-- #game-end is initially hidden using CSS style display: none -->
       <div id="game-end">
-        <img src="./images/logo.png" alt="" class="logo-img" />
-        <h1>Game Over</h1>
+        <img src="./images/logo1.png" alt="" class="logo-img" />
+        <h2>Game Over</h2>
         <br />
+        <div id="stats">
+          <h2>Stats</h2>
+          <p>Score: <span id="score">0</span></p>
+          <p>Oxygen: <span id="oxygen">100</span></p>
+        </div>
         <button id="restart-button">Restart</button>
       </div>
     </main>

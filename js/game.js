@@ -14,7 +14,7 @@ class Game {
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.round(1000 / 60);
-    this.player = new Player(this.gameScreen, 100, 500, 140, 140);
+    this.player = new Player(this.gameScreen, 200, 400, 140, 140);
     this.playersScore = document.querySelector("#score");
     this.playersOxygen = document.querySelector("#oxygen");
     this.objectStatement = document.querySelector("#object-statement");
@@ -24,9 +24,6 @@ class Game {
     this.scoreBar = document.querySelector("#score-filling");
     this.stats = document.querySelector("#stats");
     this.lvl = document.querySelector("#lvl");
-
-    this.backgroundAnimation = document.querySelector("#under-water");
-    this.animationDuration = 20;
   }
   start() {
     this.gameScreen.style.width = this.width + "px";
@@ -48,6 +45,7 @@ class Game {
   displayObjectStatement(statement) {
     this.objectStatement.style.display = "flex"; // Ensure the element is displayed
     this.objectStatement.style.backgroundColor = "white";
+    this.objectStatement.style.borderColor = "black";
     this.objectStatement.innerText = statement;
 
     setTimeout(() => {
@@ -59,12 +57,11 @@ class Game {
 
   update() {
     this.player.move();
-    console.log(this.objects);
 
     // Check for collision and if an object is still on the screen
     for (let i = 0; i < this.objects.length; i++) {
       const object = this.objects[i];
-      object.move();
+      object.move(this.currentLvl); // increses speed depending on current level
 
       // If the player collides with an object
       if (this.player.didCollect(object)) {
@@ -85,7 +82,7 @@ class Game {
     }
 
     // Decrease divers oxygen level while diving
-    if (this.player.top > 80) {
+    if (this.player.top > 87) {
       this.player.decreaseOxygen();
       this.updateOxygen();
       //console.log("oxygen level is decreasing..  " + this.player.top);
@@ -110,7 +107,7 @@ class Game {
     // Create a new object based on a random probability
     // when there is no other objects on the screen
     if (Math.random() > 0.99 && this.objects.length < 5) {
-      this.objects.push(new Object(this.gameScreen, 1000, 40, 40));
+      this.objects.push(new Object(this.gameScreen, 1000));
     }
   }
 
@@ -128,15 +125,22 @@ class Game {
       this.currentLvl += 1;
       this.lvl.innerText = this.currentLvl;
 
-      // increse backdrift, object & background movement speed
+      // increase divers backwards drift
       this.player.increaseBackwardDrift();
-      this.objects.forEach((object) => {
-        object.increaseSpeed(this.currentLvl);
-      });
-      /*
-      this.backgroundAnimation.style.animation =
-        "moveBackground " + this.animationDuration - 5 + "s linear infinite";
-      */
+
+      // Access the background animation element
+      const backgroundElement = document.getElementById("under-water");
+
+      // Get the current animation duration
+      const computedStyle = window.getComputedStyle(backgroundElement);
+      const animationDuration = computedStyle.animationDuration;
+
+      // Parse the duration and decrease it by 5 seconds
+      let durationInSeconds = parseFloat(animationDuration);
+      durationInSeconds = Math.max(durationInSeconds - 3, 1); // Ensure it doesn't go below 1 second
+
+      // Set the new animation duration
+      backgroundElement.style.animationDuration = `${durationInSeconds}s`;
     }
   }
 

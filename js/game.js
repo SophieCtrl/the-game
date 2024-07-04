@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.startScreen = document.querySelector("#game-intro");
     this.gameScreen = document.querySelector("#game-screen");
+    this.gameContainer = document.querySelector("#game-container");
     this.overWater = document.querySelector("#over-water");
     this.underWater = document.querySelector("#under-water");
     this.gameEndScreen = document.querySelector("#game-end");
@@ -15,22 +16,30 @@ class Game {
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.round(1000 / 60);
     this.player = new Player(this.gameScreen, 200, 400, 140, 140);
-    this.playersScore = document.querySelector("#score");
-    this.playersOxygen = document.querySelector("#oxygen");
+    this.finalScoreElement = document.querySelector("#score");
+    this.finalLevelElement = document.querySelector("#level");
     this.objectStatement = document.querySelector("#object-statement");
-    this.oxygenBar = document.querySelector("#oxygen-bar");
     this.scoreBar = document.querySelector("#score-bar");
     this.oxygenBar = document.querySelector("#oxygen-filling");
     this.scoreBar = document.querySelector("#score-filling");
-    this.stats = document.querySelector("#stats");
     this.lvl = document.querySelector("#lvl");
+    this.gameOverStatement = document.querySelector("#game-over-statement");
+    this.scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    // Access audio elements
+    const bgMusic = document.getElementById("bgMusic");
+    const collectSound = document.getElementById("collectSound");
+    const avoidSound = document.getElementById("avoidSound");
+    const levelUpSound = document.getElementById("levelUpSound");
+    const oxygenLowSound = document.getElementById("oxygenLowSound");
+    const fillUpOxygenSound = document.getElementById("levelUpSound");
+    const gameOverSound = document.getElementById("oxygenLowSound");
   }
   start() {
+    bgMusic.play();
     this.gameScreen.style.width = this.width + "px";
     this.gameScreen.style.height = this.height + "px";
     this.startScreen.style.display = "none";
     this.gameEndScreen.style.display = "none";
-    this.stats.style.display = "none";
     this.gameScreen.style.display = "block";
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
@@ -52,7 +61,7 @@ class Game {
       this.objectStatement.style.backgroundColor = "transparent"; // Reset background to transparent
       this.objectStatement.innerText = ""; // Clear the text content
       this.objectStatement.style.display = "none"; // Hide the element after clearing
-    }, 3000);
+    }, 4000);
   }
 
   update() {
@@ -66,6 +75,8 @@ class Game {
       // If the player collides with an object
       if (this.player.didCollect(object)) {
         this.updateScore(object.points);
+        if (object.points > 0) collectSound.play();
+        if (object.points < 0) avoidSound.play();
         this.updateOxygen();
         this.displayObjectStatement(object.statement);
         object.element.remove();
@@ -87,34 +98,42 @@ class Game {
       this.updateOxygen();
       //console.log("oxygen level is decreasing..  " + this.player.top);
     }
+
     // Increase divers oxygen level while surfacing
     else {
       this.player.fillUpOxygen();
       this.updateOxygen();
+      fillUpOxygenSound.play();
       //console.log("filling up oxygen..  " + this.player.top);
     }
+
+    // If oxygen level drops below 20%
+    if (this.player.oxygenLevel < 20) oxygenLowSound.play();
 
     // If oxygen level raches 0, end the game
     if (this.player.oxygenLevel === 0) {
       this.endGame();
+      this.gameOverStatement.innerText =
+        "Out of air! Ready to catch your breath and dive back in?";
     }
 
     // If player leaves screen on left side
     if (this.player.left < -50) {
       this.endGame();
+      this.gameOverStatement.innerText =
+        "Caught in the current! Ready for a redo?";
     }
 
     // Create a new object based on a random probability
     // when there is no other objects on the screen
     if (Math.random() > 0.99 && this.objects.length < 5) {
-      this.objects.push(new Object(this.gameScreen, 1000));
+      this.objects.push(new Object(this.gameScreen, 920));
     }
   }
 
   updateScore(points) {
     this.score += points;
     let lvlBarPercentage = this.score % 100; // Calculate the percentage for the current level
-    this.playersScore.innerText = this.score;
     this.scoreBar.style.width = lvlBarPercentage + "%";
     this.levelUp();
   }
@@ -122,6 +141,7 @@ class Game {
   levelUp() {
     // Check if the score has crossed a multiple of 100
     if (this.score >= this.currentLvl * 100 + 100) {
+      levelUpSound.play();
       this.currentLvl += 1;
       this.lvl.innerText = this.currentLvl;
 
@@ -147,16 +167,37 @@ class Game {
   updateOxygen() {
     if (this.oxygenLevel > 100) this.oxygenLevel = 100;
     this.oxygenBar.style.width = Math.round(this.player.oxygenLevel) + "%";
-    this.playersOxygen.innerText = Math.round(this.player.oxygenLevel);
   }
 
   endGame() {
+    bgMusic.pause();
+    gameOverSound.play();
     this.player.element.remove();
     this.objects.forEach((object) => {
       object.element.remove();
     });
     this.gameIsOver = true;
     this.gameScreen.style.display = "none";
-    this.gameEndScreen.style.display = "block";
+    this.gameEndScreen.style.display = "flex";
+    this.finalScoreElement.innerText = this.score;
+    this.finalLevelElement.innerText = this.currentLvl;
+    this.updateScoreboard();
+  }
+
+  updateScoreboard() {
+    const scoreList = document.getElementById("score-list");
+    scoreList.innerHTML = "";
+    this.scoreboard.forEach((entry) => {
+      const li = document.createElement("li");
+      li.innerText = `${entry.name}: ${entry.score}`;
+      scoreList.appendChild(li);
+    });
+  }
+
+  logScore(name, score) {
+    this.scoreboard.push({ name, score });
+    this.scoreboard.sort((a, b) => b.score - a.score);
+    localStorage.setItem("scoreboard", JSON.stringify(this.scoreboard));
+    this.updateScoreboard();
   }
 }

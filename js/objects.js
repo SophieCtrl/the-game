@@ -1,19 +1,19 @@
 class Object {
-  constructor(gameScreen, left, width) {
+  constructor(gameScreen, left) {
     this.gameScreen = gameScreen;
     this.left = left;
     this.top = Math.random() * (540 - 130) + 130;
     this.movementSpeed = 0.5;
     this.element = document.createElement("img");
     this.treatsAndEnemies = [
-      ["../images/objects/fish-big.gif", "I'm yours, my friend!", 50, 70],
+      ["../images/objects/fish-big.gif", "I'm yours, my friend!", 20, 70],
       [
         "../images/objects/fish-dart.gif",
         "You found me! Now, what's your wish?",
         40,
         70,
       ],
-      ["../images/objects/fish-ezgif.gif", "I'm yours, my friend!", 50, 70],
+      ["../images/objects/fish-ezgif.gif", "I'm yours, my friend!", 30, 70],
       [
         "../images/objects/mermaid.gif",
         "Ugh, humans! Keep your hands to yourself!",
@@ -29,13 +29,13 @@ class Object {
       [
         "../images/objects/fishyfish.gif",
         "Sure thing, bro! Let's swim together!",
-        50,
+        15,
         50,
       ],
       [
         "../images/objects/fish-big.gif",
         "Thanks for the pick, buddy! I feel like a starfish!",
-        50,
+        25,
         70,
       ],
       [

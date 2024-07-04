@@ -23,8 +23,26 @@ ul {
 }
 
 p,
-ul {
-  font-size: 25px;
+ul,
+h1 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 30px;
+  line-height: 1rem;
+}
+
+h2 {
+  font-size: 100px;
+  line-height: 2rem;
+  padding: 0;
+  margin: 3vh;
+}
+
+p#game-over-statement {
+  line-height: 0.5px;
+  padding-bottom: 20px;
 }
 
 .centered-container {
@@ -42,10 +60,20 @@ ul {
   height: 100vh;
 }
 
+#game-end {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  color: white;
+  gap: 5px;
+}
+
 #game-container {
   display: flex;
   width: 100vw;
-  padding: 20px 0px;
   justify-content: center;
   background: #2695ab;
   background: radial-gradient(circle, #2695ab 35%, #f08f5b 94%);
@@ -76,7 +104,7 @@ ul {
   overflow: hidden; /* Hide overflow to clip overflowing background */
   background-repeat: repeat-x; /* Repeat background image horizontally */
   background-size: auto 100%;
-  animation: moveBackground 35s linear infinite; /* animation duration*/
+  animation: moveOverWater 35s linear infinite; /* animation duration*/
 }
 
 #under-water {
@@ -87,15 +115,24 @@ ul {
   overflow: hidden; /* Hide overflow to clip overflowing background */
   background-repeat: repeat-x; /* Repeat background image horizontally */
   background-size: auto 100%; /* Maintain aspect ratio and cover full height */
-  animation: moveBackground 20s linear infinite; /* animation duration*/
+  animation: moveUnderWater 20s linear infinite; /* animation duration*/
 }
 
-@keyframes moveBackground {
+@keyframes moveOverWater {
   from {
-    background-position: 100% 0; /* Start position at right */
+    background-position: 0 0; /* Start position */
   }
   to {
-    background-position: -100% 0; /* End position at left */
+    background-position: -100% 0; /* End position */
+  }
+}
+
+@keyframes moveUnderWater {
+  from {
+    background-position: 0 0; /* Start position */
+  }
+  to {
+    background-position: -100% 0; /* End position */
   }
 }
 
@@ -116,6 +153,7 @@ ul {
   color: black;
   border: 2px solid transparent;
   border-radius: 10px;
+  z-index: 10;
 }
 
 #oxygen-bar,
@@ -160,10 +198,6 @@ ul {
   font-weight: bold;
 }
 
-#game-end {
-  display: none;
-}
-
 .game-intro p {
   font-size: 18px;
   font-family: "Verdana";
@@ -174,15 +208,61 @@ ul {
   padding: 1vh;
 }
 
+#game-end .logo-img {
+  width: 40%;
+}
+
 body button {
-  font-size: 30px;
+  font-size: 28px;
   background-color: #ffffff;
   color: #0e3c59;
-  padding: 20px 40px;
+  padding: 15px 20px;
+  align-self: center;
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
-  margin-bottom: 20px;
-  margin: 3vh;
+  margin: 2vh;
   font-family: "VT323", monospace;
+}
+
+.two-column-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1vw;
+  width: 80%;
+  margin-top: 6vh;
+}
+
+.two-column-container > div {
+  align-items: flex-start;
+  width: 40%;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px 30px;
+  text-align: left;
+}
+
+.two-column-container p {
+  line-height: 0.5rem;
+}
+
+#log-score input {
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 20px;
+  border-color: white;
+  font-family: "VT323", monospace;
+  margin-bottom: 10px;
+}
+
+#log-score button {
+  padding: 8px;
+  font-size: 20px;
+  margin: 0;
+}
+
+.liststyle-none {
+  list-style-type: none;
+  padding: 0;
 }

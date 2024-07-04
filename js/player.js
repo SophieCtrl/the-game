@@ -26,29 +26,27 @@ class Player {
     this.left += this.directionX;
     this.top += this.directionY;
 
-    /*
-
-    let newImage = "../images/player-idle.gif";
-    if (this.directionX !== 0) {
-      newImage = "../images/player-fast.gif";
-    }
-
-    if (newImage !== this.currentImage) {
-      this.currentImage = newImage;
-      this.element.src = newImage;
-    }
-
-    */
-
     // Determine the new image to display
     let newImage = "../images/player-idle-crop.gif";
     if (this.directionX !== 0) {
-      newImage = "../images/player-fast-crop.gif";
+      if (this.directionX > 0) {
+        // Moving to the right
+        newImage = "../images/player-fast-crop.gif";
+      } else {
+        // Moving to the left
+        newImage = "../images/player-fast-rotate.gif";
+      }
       this.element.style.width = `140px`;
       this.element.style.height = `70px`;
       // let player swim
       if (this.top < 87) {
-        newImage = "../images/player-swiming-crop.gif";
+        if (this.directionX > 0) {
+          // Moving to the right
+          newImage = "../images/player-swiming-crop.gif";
+        } else {
+          // Moving to the left
+          newImage = "../images/player-swiming-rotate.gif";
+        }
       }
       // Clear backward flow interval if the player is moving
       if (this.backwardFlowInterval) {
@@ -73,12 +71,26 @@ class Player {
     if (this.top < 85) {
       this.top = 85;
     }
-    if (this.left > this.gameScreen.offsetWidth - this.width - 0) {
-      this.left = this.gameScreen.offsetWidth - this.width - 0;
+    if (this.top > 480) {
+      this.top = 480;
     }
-    if (this.top > this.gameScreen.offsetHeight - this.height - 0) {
-      this.top = this.gameScreen.offsetHeight - this.height - 0;
+    if (this.left > 890) {
+      this.left = 890;
     }
+    /*
+    if (
+      this.left >
+      this.gameScreen.offsetWidth - this.element.style.width - 0
+    ) {
+      this.left = this.gameScreen.offsetWidth - this.element.style.width - 0;
+    }
+    if (
+      this.top >
+      this.gameScreen.offsetHeight - this.element.style.height - 0
+    ) {
+      this.top = this.gameScreen.offsetHeight - this.element.style.height - 0;
+    }
+      */
 
     // Update the player's position on the screen
     this.updatePosition();

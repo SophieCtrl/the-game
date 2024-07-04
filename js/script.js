@@ -84,4 +84,13 @@ window.onload = function () {
   function restartGame() {
     location.reload();
   }
+
+  // Event listener for logging score
+  document.getElementById("log-score-button").addEventListener("click", () => {
+    const playerName = document.getElementById("player-name").value;
+    if (playerName) {
+      game.logScore(playerName, game.score);
+      document.getElementById("log-score").style.display = "none"; // Hide log score form after logging
+    }
+  });
 };

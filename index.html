@@ -8,31 +8,29 @@
   </head>
   <body>
     <main>
-      <!-- #game-intro is initially shown on the game start screen -->
+      <!-- Game Intro Screen -->
       <div id="game-intro">
-        <img src="images/logo1.png" class="logo-img" alt="Dive Quest: Fish Franzy" />
+        <img
+          src="images/logo1.png"
+          class="logo-img"
+          alt="Dive Quest: Fish Franzy"
+        />
         <br />
-        <div class="centered-container"><p>
-          Ahoy, young adventurer! Ready for your mission?
-        </p>
-        <ul>
-          <li>
-            <b>– Catch fish to improve your experience and
-            level up.
-          </li>
-          <li>
-            <b>– Avoid rude & dangerous creatures.
-          </li>
-          <li>
-            <b>– Watch the Current and be careful not to drift away.
-          </li>
-          <li>
-            <b>– Surface to replenish your oxygen. Running out
-            means losing a life.
-          </li>
-        </ul>
-        <button id="start-button">Let's Dive In!</button>
-      </div>
+        <div class="centered-container">
+          <h1>Ahoy, young adventurer! Ready for your mission?</h1>
+          <ul>
+            <li>– Catch fish to improve your experience and level up.</li>
+            <li>
+              – Be cautious, some creatures don't appreciate being disturbed.
+            </li>
+            <li>– Watch the Current and be careful not to drift away.</li>
+            <li>
+              – Surface to replenish your oxygen. Running out means losing a
+              life.
+            </li>
+          </ul>
+          <button id="start-button">Let's Dive In!</button>
+        </div>
       </div>
 
       <div id="game-container">
@@ -56,22 +54,82 @@
             <div id="object-statement"></div>
           </div>
         </div>
-      </div>
 
-      <!-- #game-end is initially hidden using CSS style display: none -->
-      <div id="game-end">
-        <img src="./images/logo1.png" alt="" class="logo-img" />
-        <h2>Game Over</h2>
-        <br />
-        <div id="stats">
-          <h2>Stats</h2>
-          <p>Score: <span id="score">0</span></p>
-          <p>Oxygen: <span id="oxygen">100</span></p>
+        <!-- #game-end is initially hidden using CSS style display: none -->
+        <div id="game-end">
+          <h2 id="game-over-h2">Game Over</h2>
+          <p id="game-over-statement"></p>
+          <button id="restart-button">Restart</button>
+
+          <div class="two-column-container">
+            <div>
+              <div id="stats">
+                <h3>Stats</h3>
+                <ul class="liststyle-none">
+                  <li>Score: <span id="score">0</span></li>
+                  <li>Level: <span id="level">0</span></li>
+                </ul>
+              </div>
+              <!-- Input form for player name -->
+              <div id="log-score">
+                <input
+                  type="text"
+                  id="player-name"
+                  placeholder="Enter your name"
+                />
+                <button id="log-score-button">Log Score</button>
+              </div>
+            </div>
+
+            <div>
+              <!-- Scoreboard -->
+              <div id="scoreboard">
+                <h3>Scoreboard</h3>
+                <ul id="score-list" class="liststyle-none"></ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <button id="restart-button">Restart</button>
       </div>
     </main>
 
+    <!-- Audio elements -->
+    <audio id="bgMusic" loop>
+      <source src="sounds/watery_cave.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="collectSound">
+      <source src="sounds/collected.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="avoidSound">
+      <source src="sounds/do-not-touch.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="levelUpSound">
+      <source src="sounds/level-up.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="oxygenLowSound">
+      <source src="sounds/oxygen-low.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="fillUpOxygenSound">
+      <source src="sounds/fillUpOxygen.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="gameOverSound">
+      <source src="sounds/game-over.mp3" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Scripts -->
     <script type="text/javascript" src="js/objects.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
     <script type="text/javascript" src="js/game.js"></script>

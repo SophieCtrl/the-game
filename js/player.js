@@ -77,20 +77,6 @@ class Player {
     if (this.left > 890) {
       this.left = 890;
     }
-    /*
-    if (
-      this.left >
-      this.gameScreen.offsetWidth - this.element.style.width - 0
-    ) {
-      this.left = this.gameScreen.offsetWidth - this.element.style.width - 0;
-    }
-    if (
-      this.top >
-      this.gameScreen.offsetHeight - this.element.style.height - 0
-    ) {
-      this.top = this.gameScreen.offsetHeight - this.element.style.height - 0;
-    }
-      */
 
     // Update the player's position on the screen
     this.updatePosition();

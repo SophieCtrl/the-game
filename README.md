@@ -2,6 +2,10 @@
 
 Welcome to Dive Quest: Fish Frenzy! Dive into an underwater world, catch fish, avoid dangers, and keep an eye on your oxygen levels. How long will you be able to withstand the current and keep your oxygen level stable?
 
+## Presentation
+
+https://docs.google.com/presentation/d/1wt8yliV9pD-geo7G7_cgp7SD0hoQ8B8FVv_rOBHLowI/edit?usp=sharing
+
 ## Table of Contents
 
 1. [Game Description](#game-description)

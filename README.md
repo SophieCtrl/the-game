@@ -11,12 +11,13 @@ https://docs.google.com/presentation/d/1wt8yliV9pD-geo7G7_cgp7SD0hoQ8B8FVv_rOBHL
 1. [Game Description](#game-description)
 2. [Installation](#installation)
 3. [How to Play](#how-to-play)
-4. [Game Mechanics](#game-mechanics)
-5. [Sound Effects and Music](#sound-effects-and-music)
-6. [Logging Scores](#logging-scores)
-7. [File Structure](#file-structure)
-8. [Contributing](#contributing)
-9. [License](#license)
+4. [Technologies](#technologies)
+5. [Game Mechanics](#game-mechanics)
+6. [Sound Effects and Music](#sound-effects-and-music)
+7. [Logging Scores](#logging-scores)
+8. [File Structure](#file-structure)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ## Game Description
 
@@ -53,11 +54,18 @@ Swim over fish to catch them and increase your score.
 
 ### Avoid Dangerous Creatures
 
-Avoid creatures that can reduce your score and oxygen levels.
+Avoid creatures that can reduce your score.
 
 ### Manage Oxygen
 
 Ensure the diver surfaces periodically to refill oxygen levels.
+
+# Technologies
+
+- Classes
+- Event Listeners
+- Audio Elements
+- Local Storage
 
 # Game Mechanics
 

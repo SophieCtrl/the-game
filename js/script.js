@@ -84,6 +84,7 @@ window.onload = function () {
   });
 
   function restartGame() {
+    game.endGame();
     location.reload();
   }
 
